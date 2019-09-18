@@ -25,7 +25,7 @@ export default class App extends React.Component {
     return (
       <AppStateContext.Provider>
         <div className="app">
-          <header className="app-header" onMouseEnter={() => { this.startAnimation(); }} onMouseLeave={() => { this.stopAnimation(); }}><h1>React Simple Context State <i className={`fa fa-thumbs-up ml-2 animated ${this.state.animate ? 'tada' : ''}`}></i></h1></header>
+          <header className="app-header" onMouseEnter={() => { this.startAnimation(); }} onMouseLeave={() => { this.stopAnimation(); }}><h1>React Simple Context State <i className={`fa fa-thumbs-up ml-2 animated ${this.state.animate ? 'bounce' : ''}`}></i></h1></header>
           <ApplicationLayout/>
         </div>
       </AppStateContext.Provider>
