@@ -1,0 +1,19 @@
+.todo-item {
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 3px;
+    padding: 15px;
+}
+.todo-item-title {
+    padding-top: 6px;
+}
+.todo-item-complete {
+    padding-top: 4px;
+}
+.todo-item-complete-button {
+    font-size: 30px;
+    line-height: 16px;
+    cursor: pointer;
+}
+.todo-item-complete-button .fa-check-circle {
+    color: green;
+}

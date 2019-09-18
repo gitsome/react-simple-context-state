@@ -1,0 +1,46 @@
+{
+  "name": "react-simple-context-state",
+  "version": "0.0.1",
+  "description": "Dead simple top down state management for React",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc && node ./scripts/copy-to-sample-react-app.js",
+    "watch": "chokidar \"./src/**/*.ts\" \"./src/**/*.tsx\" -c \"yarn run build\"",
+    "test": "ts-node node_modules/jasmine/bin/jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gitsome/react-simple-state.git"
+  },
+  "keywords": [
+    "React",
+    "state",
+    "management",
+    "immutable",
+    "context"
+  ],
+  "author": "John David Martin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gitsome/react-simple-state/issues"
+  },
+  "homepage": "https://github.com/gitsome/react-simple-state#readme",
+  "devDependencies": {
+    "@types/jest": "^24.0.18",
+    "chokidar-cli": "^2.0.0",
+    "fs-extra": "^8.1.0",
+    "husky": "^3.0.5",
+    "jasmine": "^3.4.0",
+    "jasmine-terminal-reporter": "^1.0.3",
+    "ts-node": "^8.4.1",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.3"
+  },
+  "dependencies": {
+    "@types/react": "^16.9.2",
+    "lint-staged": "^9.2.5",
+    "react": "^16.9.0",
+    "tslint-react": "^4.1.0"
+  }
+}
