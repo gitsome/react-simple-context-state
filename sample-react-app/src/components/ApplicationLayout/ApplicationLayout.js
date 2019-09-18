@@ -40,7 +40,7 @@ export default class ApplicationLayout extends React.Component {
             <div className="application-layout container">
 
               <div className="row">
-                <div className="col-10 col-offset-1 mb-3">
+                <div className="col-lg-10 offset-lg-1 mb-4">
                   <p>This demo illustrates how multiple <strong>StateStores</strong> can be created and used to generate a <strong>ReactSimpleStateContext</strong> that can be used across the app. It shows how to update shallow properties as well as how to update arrays.</p>
                 </div>
               </div>
@@ -49,7 +49,7 @@ export default class ApplicationLayout extends React.Component {
                 <div className="col-lg-6 mb-4">
                   <h2>Pass Down Context State</h2>
                   <p className="mb-4">
-                    The user card below is being passed "userState" that is being consumed from a parent. It also has internal component state to track the active tab.
+                    The user card below is being passed "userState" that is being consumed from a parent. It also has internal component state to track the active tab. This example also shows how to use `asycState` to help with asynchronous calls to load a user's tweets.
                   </p>
                   <h3>User Card Information</h3>
                   <UserCard user={userState} onTweetsRequested={() => { this.onUserTweetsRequested(); }}></UserCard>
