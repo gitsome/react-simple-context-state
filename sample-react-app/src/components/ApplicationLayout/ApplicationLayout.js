@@ -12,10 +12,10 @@ import './ApplicationLayout.css';
 export default class ApplicationLayout extends React.Component {
 
   onUserTweetsRequested () {
+
     UserStateStore.tweetsLoadingUpdate(true);
 
     TweetService.getTweetsForUser(UserStateStore.twitterHandle).then((response) => {
-      console.log('response is : ' + response);
       UserStateStore.update({
         tweets: response,
         tweetsLoading: false,
@@ -66,7 +66,7 @@ export default class ApplicationLayout extends React.Component {
 
               <div className="row">
                 <div className="col-12 mt-5">
-                  <p className="text-center">View the docs for this library at the <a href="https://github.com/gitsome/react-simple-state" target="_blank" rel="noopener noreferrer">ReactSimpleState GitHub Repository</a>.</p>
+                  <p className="text-center">View the docs for this library at the <a href="https://github.com/gitsome/react-simple-context-state" target="_blank" rel="noopener noreferrer">ReactSimpleState GitHub Repository</a>.</p>
                 </div>
               </div>
 

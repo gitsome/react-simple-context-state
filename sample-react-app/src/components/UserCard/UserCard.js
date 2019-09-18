@@ -57,13 +57,13 @@ export default class UserCard extends React.Component {
               )}
             </button>
 
-            { this.props.user.tweetsError && (
+            { this.props.user.tweetsError && !this.props.user.tweetsLoading && (
               <div class="alert alert-danger mt-2" role="alert">
                 Uh oh, something went wrong. Try loading tweets again.
               </div>
             )}
 
-            { this.props.user.tweets !== false && (
+            { this.props.user.tweets !== false && !this.props.user.tweetsLoading && (
               <div>
                   {
                     this.props.user.tweets.map((tweetEmbed, tweetIndex) => {
