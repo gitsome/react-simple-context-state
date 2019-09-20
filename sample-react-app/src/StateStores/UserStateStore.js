@@ -1,11 +1,11 @@
 import { StateStore } from '../dist/index';
 
 const UserStateStore = new StateStore({
-  firstName: 'John',
-  lastName: 'Martin',
+  firstName: 'Robert',
+  lastName: 'Loblaw',
   blurb: 'This is a sample blurb for the user.',
-  profession: 'skateboarder',
-  twitterHandle: '@JohnDavidFive',
+  profession: 'Law Blogger',
+  twitterHandle: '@lawblogger',
   asyncState: {
     tweets: false
   }

@@ -39,9 +39,9 @@ export default class UserCard extends React.Component {
 
         { this.state.currentTab === 'info' && (
           <div className="card-body">
-            <h5 className="card-title"><strong>Name:</strong> { this.props.user.firstName } { this.props.user.lastName }</h5>
-            <h5 className="card-title"><strong>Profession:</strong> { this.props.user.profession }</h5>
-            <h5 className="card-title"><strong>Blurb:</strong> { this.props.user.blurb }</h5>
+            <p className="card-title"><strong>Name:</strong> { this.props.user.firstName } { this.props.user.lastName }</p>
+            <p className="card-title"><strong>Profession:</strong> { this.props.user.profession }</p>
+            <p className="card-title"><strong>Blurb:</strong> { this.props.user.blurb }</p>
           </div>
         )}
 
@@ -56,6 +56,12 @@ export default class UserCard extends React.Component {
           <div className="card-body">
             <h5 className="card-title">User Tweets</h5>
 
+            { this.props.user.tweetsError && !this.props.user.tweetsLoading && (
+              <div className="alert alert-danger mt-2" role="alert">
+                Uh oh, something went wrong. Try loading tweets again.
+              </div>
+            )}
+
             <button className="btn btn-outline-primary btn-block" onClick={() => { this.loadTweets(); }}>
               { this.props.user.tweetsLoading && (
                 <i className="fa fa-spinner fa-spin mr-2"></i>
@@ -69,12 +75,6 @@ export default class UserCard extends React.Component {
                 <span>Reload Tweets</span>
               )}
             </button>
-
-            { this.props.user.tweetsError && !this.props.user.tweetsLoading && (
-              <div class="alert alert-danger mt-2" role="alert">
-                Uh oh, something went wrong. Try loading tweets again.
-              </div>
-            )}
 
             { this.props.user.tweets !== false && !this.props.user.tweetsLoading && (
               <div>

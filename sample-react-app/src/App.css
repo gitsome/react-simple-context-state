@@ -13,3 +13,14 @@
 .badge-light {
   box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
 }
+.badge-light.badge-pill {
+  box-shadow: none;
+  border: 1px solid rgba(0,0,0, 0.1);
+  background: white;
+}
+a.badge-light {
+  border: 1px dashed rgba(0, 123, 255, 0.75);
+}
+a.badge-light:hover {
+  border: 1px solid rgba(0, 123, 255, 1.0);
+}

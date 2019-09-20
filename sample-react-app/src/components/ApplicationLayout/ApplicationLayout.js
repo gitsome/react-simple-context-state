@@ -5,6 +5,8 @@ import DemoTodos from '../DemoTodos/DemoTodos';
 
 import AppStateContext from '../../StateContexts/AppStateContext';
 
+import { SourceCodeLink, Property } from '../SourceCodeLink/SourceCodeLink';
+
 import './ApplicationLayout.css';
 export default class ApplicationLayout extends React.Component {
 
@@ -19,7 +21,7 @@ export default class ApplicationLayout extends React.Component {
 
               <div className="row">
                 <div className="col-lg-10 offset-lg-1 mb-5 mt-3">
-                  <blockquote className="blockquote">These demos illustrate how <span className="badge badge-light">StateStores</span> can be created and used to generate a <span className="badge badge-light">StateContext</span> for use across an application. Some demos share state from the top level app. Others have their own internal context based state.</blockquote>
+                  <blockquote className="blockquote">These demos illustrate how <SourceCodeLink file="StateStores"/> can be created and used to generate an <SourceCodeLink file="AppStateContext"/> for use across an application. Some demos share state from the top level app. Others have their own internal context based state.</blockquote>
                 </div>
               </div>
 
@@ -31,11 +33,11 @@ export default class ApplicationLayout extends React.Component {
                     <div className="demo-details">
                       <h2>Todo List Demo</h2>
                       <ul className="mb-4">
-                        <li>The <span className="badge badge-light">Todos</span> component uses a consumer to access <span className="badge badge-light">userState</span></li>
-                        <li>Internal state is used to track the state of the todo creation input.</li>
+                        <li>The <SourceCodeLink file="Todos"/> component uses a consumer to access <Property>userState</Property> from the <SourceCodeLink file="UserStateStore"/></li>
+                        <li>Internal state is used to track the state of the todo creation input inside of the <SourceCodeLink file="Todos"/> component</li>
                       </ul>
                       <p>
-                        Check out the ApplicationLayout component <a href="" target="_blank" rel="noopener noreferrer"></a> and the <span className="badge badge-light">UserCard</span>
+                        Check out the <SourceCodeLink file="ApplicationLayout"/> component and the <SourceCodeLink file="Todos"/> component.
                       </p>
                     </div>
 
@@ -51,12 +53,12 @@ export default class ApplicationLayout extends React.Component {
                     <div className="demo-details">
                       <h2>User Card Demo</h2>
                       <ul className="mb-4">
-                        <li>Illustrates passing down context state to a <span className="badge badge-light">UserCard</span> component</li>
-                        <li>Shows use case for internal state. The <span className="badge badge-light">UserCard</span> uses it for tracking the current tab</li>
-                        <li>Uses <span className="badge badge-light">asycState</span> properties to help aleviate user experience around loading tweets asynchronously</li>
+                        <li>Passes down context state to a <SourceCodeLink file="UserCard"/> component</li>
+                        <li>Uses internal state. The <SourceCodeLink file="UserCard"/> uses it for tracking the current tab</li>
+                        <li>Uses <Property>asycState</Property> tweets property</li>
                       </ul>
                       <p>
-                        See that the <a href="https://github.com/gitsome/react-simple-context-state/blob/master/sample-react-app/src/components/ApplicationLayout/ApplicationLayout.js" target="_blank" rel="noopener noreferrer" className="badge badge-light">ApplicationLayout</a> component passes context state down through the <a href="https://github.com/gitsome/react-simple-context-state/blob/master/sample-react-app/src/components/DemoUserCard/DemoUserCard.js" target="_blank" rel="noopener noreferrer" className="badge badge-light">DemoUserCard</a> component which accesses the <a href="https://github.com/gitsome/react-simple-context-state/blob/master/sample-react-app/src/StateStores/UserStateStore.js" target="_blank" rel="noopener noreferrer" className="badge badge-light">UserStateStore</a> directly to fetch tweets and update the user state.  The <a href="https://github.com/gitsome/react-simple-context-state/blob/master/sample-react-app/src/components/UserCard/UserCard.js" target="_blank" rel="noopener noreferrer" className="badge badge-light">UserCard</a> component uses some internal state too.
+                        See that the <SourceCodeLink file="ApplicationLayout"/> component passes context state down through the <SourceCodeLink file="DemoUserCard"/> component which accesses the <SourceCodeLink file="UserStateStore"/> directly to fetch tweets and update the user state.  The <SourceCodeLink file="UserCard"/> component uses some internal state too.
                       </p>
                     </div>
 
@@ -71,7 +73,7 @@ export default class ApplicationLayout extends React.Component {
 
               <div className="row">
                 <div className="col-12 mt-5">
-                  <p className="text-center">View the docs for this library at the <a href="https://github.com/gitsome/react-simple-context-state" target="_blank" rel="noopener noreferrer">ReactSimpleState GitHub Repository</a>.</p>
+                  <p className="text-center">View the docs for this library at the <a href="https://github.com/gitsome/react-simple-context-state" target="_blank" rel="noopener noreferrer">react-simple-context-state</a> GitHub Repository.</p>
                 </div>
               </div>
 

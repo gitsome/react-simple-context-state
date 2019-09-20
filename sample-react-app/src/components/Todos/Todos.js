@@ -38,7 +38,9 @@ export default class ApplicationLayout extends React.Component {
 
   addTodo (todoTitle) {
 
-    console.log("todoTitle:", todoTitle);
+    if (todoTitle.trim() === '') {
+      return;
+    }
 
     TodoStateStore.todos.push({
       title: todoTitle,
@@ -86,7 +88,7 @@ export default class ApplicationLayout extends React.Component {
                               <h5 className="todo-item-title">{todo.title}</h5>
                             </div>
                             <div className="col col-3">
-                              <a href="#" className="btn btn-outline-secondary btn-block" onClick={() => { this.deleteTodo(todo); }}>Delete</a>
+                              <button className="btn btn-outline-secondary btn-block" onClick={() => { this.deleteTodo(todo); }}>Delete</button>
                             </div>
                           </div>
                         </div>
