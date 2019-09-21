@@ -21,7 +21,8 @@
       "no-string-literal": false,
       "member-ordering": false,
       "max-classes-per-file": false,
-      "no-consecutive-blank-lines": false
+      "no-consecutive-blank-lines": false,
+      "jsx-no-multiline-js": false
     },
     "rulesDirectory": []
   }

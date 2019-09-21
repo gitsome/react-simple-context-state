@@ -2,13 +2,14 @@ import React from 'react';
 import './Todos.css';
 import remove from 'lodash/remove';
 
-import TodoStateStore from '../../StateStores/TodoStateStore';
-import AppStateContext from '../../StateContexts/AppStateContext';
+import { StateContext } from '../../dist';
 
 export default class ApplicationLayout extends React.Component {
 
   constructor (props) {
     super(props);
+
+    this.todoStateStore = StateContext.getStateStore('todoState');
 
     this.state = {
       todoInputValue: ''
@@ -18,22 +19,22 @@ export default class ApplicationLayout extends React.Component {
 
   deleteTodo (todoToDelete) {
 
-    const updatedTodos = remove(TodoStateStore.todos, (todo) => {
+    const updatedTodos = remove(this.todoStateStore.todos, (todo) => {
       return todo.title !== todoToDelete.title;
     });
 
-    TodoStateStore.todosUpdate(updatedTodos);
+    this.todoStateStore.todosUpdate(updatedTodos);
   }
 
   toggleTodoComplete (todoToToggle) {
 
-    const matchingTodo = TodoStateStore.todos.find((todo) => {
+    const matchingTodo = this.todoStateStore.todos.find((todo) => {
       return todo.title === todoToToggle.title;
     });
 
     matchingTodo.complete = !matchingTodo.complete;
 
-    TodoStateStore.todosUpdate(TodoStateStore.todos);
+    this.todoStateStore.todosUpdate(this.todoStateStore.todos);
   }
 
   addTodo (todoTitle) {
@@ -42,12 +43,12 @@ export default class ApplicationLayout extends React.Component {
       return;
     }
 
-    TodoStateStore.todos.push({
+    this.todoStateStore.todos.push({
       title: todoTitle,
       complete: false
     });
 
-    TodoStateStore.todosUpdate(TodoStateStore.todos);
+    this.todoStateStore.todosUpdate(this.todoStateStore.todos);
 
     this.setState({
       todoInputValue: ''
@@ -60,7 +61,7 @@ export default class ApplicationLayout extends React.Component {
 
   render () {
     return (
-      <AppStateContext.Consumer>
+      <StateContext.Consumer>
         {({ todoState }) => {
 
           return (
@@ -107,7 +108,7 @@ export default class ApplicationLayout extends React.Component {
             </div>
           );
         }}
-      </AppStateContext.Consumer>
+      </StateContext.Consumer>
     );
   }
 }

@@ -1,30 +1,36 @@
 import React from 'react';
 
-import TweetService from '../../services/TweetService';
-import UserStateStore from '../../StateStores/UserStateStore';
+import StateContext from '../../dist/classes/StateContext';
 
+import TweetService from '../../services/TweetService';
 import UserCard from '../UserCard/UserCard';
 
 export default class DemoUserCard extends React.Component {
 
+  constructor (props) {
+    super(props);
+    this.userStateStore = StateContext.getStateStore('userState');
+  }
+
   onUserTweetsRequested () {
 
     // use the tweetsLoadingUpdate method that was generated automatically for the asyncState 'tweets' property
-    UserStateStore.tweetsLoadingUpdate(true);
+    console.log("userStateStore:", this.userStateStore);
+    this.userStateStore.tweetsLoadingUpdate(true);
 
-    TweetService.getTweetsForUser(UserStateStore.twitterHandle).then((response) => {
+    TweetService.getTweetsForUser(this.userStateStore.twitterHandle).then((response) => {
 
       // if you have multiple items to update synchrounously, use the update method on the StateStore instance
-      UserStateStore.update({
+      this.userStateStore.update({
         tweets: response,
         tweetsLoading: false,
         tweetsError: false
       });
 
-    }).catch(function (error) {
+    }).catch((error) => {
 
       // use the convenient update method to update all the asyncState related properties
-      UserStateStore.update({
+      this.userStateStore.update({
         tweets: false,
         tweetsLoading: false,
         tweetsError: error

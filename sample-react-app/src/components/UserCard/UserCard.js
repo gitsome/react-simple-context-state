@@ -26,13 +26,13 @@ export default class UserCard extends React.Component {
         <div className="card-header">
           <ul className="nav nav-tabs card-header-tabs">
             <li className="nav-item">
-              <a className={`nav-link ${this.state.currentTab === 'info' ? 'active': ''}`} href="#" onClick={() => { this.setCurrentTab('info'); }}>User Info</a>
+              <a className={`nav-link ${this.state.currentTab === 'info' ? 'active': ''}`} href="#" onClick={(e) => { e.preventDefault(); this.setCurrentTab('info'); }}>User Info</a>
             </li>
             <li className="nav-item">
-              <a className={`nav-link ${this.state.currentTab === 'tweets' ? 'active': ''}`} href="#" onClick={() => { this.setCurrentTab('tweets'); }}>User Tweets</a>
+              <a className={`nav-link ${this.state.currentTab === 'tweets' ? 'active': ''}`} href="#" onClick={(e) => { e.preventDefault(); this.setCurrentTab('tweets'); }}>User Tweets</a>
             </li>
             <li className="nav-item">
-              <a className={`nav-link ${this.state.currentTab === 'todos' ? 'active': ''}`} href="#" onClick={() => { this.setCurrentTab('todos'); }}>User Todos</a>
+              <a className={`nav-link ${this.state.currentTab === 'todos' ? 'active': ''}`} href="#" onClick={(e) => { e.preventDefault(); this.setCurrentTab('todos'); }}>User Todos</a>
             </li>
           </ul>
         </div>

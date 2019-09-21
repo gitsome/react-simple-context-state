@@ -1,9 +1,12 @@
 import React from 'react';
-import './App.css';
+import { StateContext } from './dist/index';
 
-import AppStateContext from './StateContexts/AppStateContext';
+import TodoStateStoreFactory from './StateStoreFactories/TodoStateStoreFactory';
+import UserStateStoreFactory from './StateStoreFactories/UserStateStoreFactory';
+
 import ApplicationLayout from './components/ApplicationLayout/ApplicationLayout';
 
+import './App.css';
 export default class App extends React.Component {
 
   constructor (props) {
@@ -11,6 +14,11 @@ export default class App extends React.Component {
 
     this.state = {
       animate: false
+    };
+
+    this.stateStores = {
+      userState: UserStateStoreFactory(),
+      todoState: TodoStateStoreFactory()
     };
   }
 
@@ -23,12 +31,12 @@ export default class App extends React.Component {
 
   render () {
     return (
-      <AppStateContext.Provider>
+      <StateContext.Provider stateStores={this.stateStores}>
         <div className="app">
           <header className="app-header" onMouseEnter={() => { this.startAnimation(); }} onMouseLeave={() => { this.stopAnimation(); }}><h1>React Simple Context State <i className={`fa fa-thumbs-up ml-2 animated ${this.state.animate ? 'bounce' : ''}`}></i></h1></header>
           <ApplicationLayout/>
         </div>
-      </AppStateContext.Provider>
+      </StateContext.Provider>
     );
     }
 }

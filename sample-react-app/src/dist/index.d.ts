@@ -1,3 +1,4 @@
 import StateStore from './classes/StateStore';
-import ReactSimpleStateContext from './classes/StateContext';
-export { StateStore, ReactSimpleStateContext };
+import StateStoreFactory from './classes/StateStoreFactory';
+import StateContext from './classes/StateContext';
+export { StateStore, StateStoreFactory, StateContext };

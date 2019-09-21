@@ -4,6 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const events_1 = __importDefault(require("events"));
+const StateStoreReservedKeys = ['asyncState'];
+exports.StateStoreReservedKeys = StateStoreReservedKeys;
 class StateStore extends events_1.default {
     constructor(reactiveProperties) {
         super();
@@ -134,5 +136,6 @@ class StateStore extends events_1.default {
         this.removeListener('update', componentReference.linkReactSimpleState);
     }
 }
+exports.StateStore = StateStore;
 exports.default = StateStore;
 //# sourceMappingURL=StateStore.js.map

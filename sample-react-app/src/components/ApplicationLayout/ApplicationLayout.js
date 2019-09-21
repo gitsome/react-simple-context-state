@@ -3,7 +3,7 @@ import React from 'react';
 import DemoUserCard from '../DemoUserCard/DemoUserCard';
 import DemoTodos from '../DemoTodos/DemoTodos';
 
-import AppStateContext from '../../StateContexts/AppStateContext';
+import StateContext from '../../dist/classes/StateContext';
 
 import { SourceCodeLink, Property } from '../SourceCodeLink/SourceCodeLink';
 
@@ -13,7 +13,7 @@ export default class ApplicationLayout extends React.Component {
   render () {
 
     return (
-      <AppStateContext.Consumer>
+      <StateContext.Consumer>
         {({ userState }) => {
 
           return (
@@ -80,7 +80,7 @@ export default class ApplicationLayout extends React.Component {
             </div>
           );
         }}
-      </AppStateContext.Consumer>
+      </StateContext.Consumer>
     );
   }
 }

@@ -1,38 +1,39 @@
 import React from 'react';
 
+import { StateStoreGlobal, IStateStoreContext } from './StateStoreGlobal';
+
 export default class StateProvider extends React.Component {
 
-  public props: any;
-  public state: any;
+  private stateStoreContext: React.Context<any>;
+  public props;
+  public state = {};
 
   constructor (props: any) {
     super(props);
 
-    this.state = {};
+    this.stateStoreContext = StateStoreGlobal.getContextForStateStores(props.stateStores);
 
-    Object.keys(this.props.storeConfig).forEach((stateKey) => {
-      this.props.storeConfig[stateKey].linkToComponentState(stateKey, this);
-      this.state[stateKey] = this.props.storeConfig[stateKey].get();
+    // here we bind state changes of these stateStores to the update cycle down this component branch
+    // we also grab the first snapshot of state from the stateStore
+    Object.keys(props.stateStores).forEach((stateKey) => {
+      props.stateStores[stateKey].linkToComponentState(stateKey, this);
+      this.state[stateKey] = props.stateStores[stateKey].get();
     });
   }
 
   public componentWillUnmount() {
-    Object.keys(this.props.storeConfig).forEach((stateKey) => {
-      this.props.storeConfig[stateKey].unlinkToComponentState(this);
+    // unbind to avoid memory leaks
+    console.log("unbinding:");
+    Object.keys(this.props.stateStores).forEach((stateKey) => {
+      this.props.stateStores[stateKey].unlinkToComponentState(this);
     });
   }
 
   public render () {
-
-    const providerValue = Object.keys(this.props.storeConfig).reduce((memo: any, stateKey) => {
-      memo[stateKey] = this.state[stateKey];
-      return memo;
-    }, {});
-
     return (
-      <this.props.provider value={providerValue}>
+      <this.stateStoreContext.Provider value={this.state}>
         {this.props.children}
-      </this.props.provider>
+      </this.stateStoreContext.Provider>
     );
   }
 };
