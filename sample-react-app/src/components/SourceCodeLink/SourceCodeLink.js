@@ -7,7 +7,8 @@ const SOURCE_REFS = {
   UserStateStore: 'https://github.com/gitsome/react-simple-context-state/blob/master/sample-react-app/src/StateStores/UserStateStore.js',
   StateStores: 'https://github.com/gitsome/react-simple-context-state/tree/master/sample-react-app/src/StateStores',
   Todos: 'https://github.com/gitsome/react-simple-context-state/blob/master/sample-react-app/src/components/Todos/Todos.js',
-  AppStateContext: 'https://github.com/gitsome/react-simple-context-state/blob/master/sample-react-app/src/StateContexts/AppStateContext.js'
+  'StateContext.Provider': 'https://github.com/gitsome/react-simple-context-state/blob/master/src/classes/StateContext.tsx',
+  'StateContext.Consumer': 'https://github.com/gitsome/react-simple-context-state/blob/master/src/classes/StateContext.tsx'
 };
 
 const SourceCodeLink = (props) => {

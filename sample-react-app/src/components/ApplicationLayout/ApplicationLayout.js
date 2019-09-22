@@ -1,8 +1,7 @@
 import React from 'react';
-import { Route } from "react-router-dom";
+import { Route, NavLink } from "react-router-dom";
 
-import { SourceCodeLink, Property } from '../SourceCodeLink/SourceCodeLink';
-
+import Home from '../Home/Home';
 import DemoUserCard from '../DemoUserCard/DemoUserCard';
 import DemoTodos from '../DemoTodos/DemoTodos';
 
@@ -18,27 +17,46 @@ export default class ApplicationLayout extends React.Component {
         {({ appState }) => {
 
           return (
-            <div className="application-layout container">
+            <div className="application-layout container-fluid">
 
               <div className="row">
-                <div className="col-lg-10 offset-lg-1 mb-5 mt-3">
-                  <blockquote className="blockquote">These demos illustrate how <SourceCodeLink file="StateStores"/> can be created and used to generate an <SourceCodeLink file="AppStateContext"/> for use across an application. Some demos share state from the top level app. Others have their own internal context based state.</blockquote>
+
+                <div className="col-sm-3">
+
+                  <h4>About</h4>
+
+                  <ul className="nav flex-column mt-3">
+                    <li className="nav-item">
+                      <NavLink to="/" exact className="nav-link" activeClassName="active"><i className="fa fa-home mr-1"></i> Introduction</NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink to="/getting-started" exact className="nav-link" activeClassName="active"><i className="fa fa-flag mr-1"></i> Getting Started</NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <a className="nav-link" href="https://github.com/gitsome/react-simple-context-state" target="_blank" rel="noopener noreferrer"><i className="fa fa-github mr-1"></i> Source Code</a>
+                    </li>
+                  </ul>
+
+                  <div className="dropdown-divider"></div>
+
+                  <h4>Demos</h4>
+                  <ul className="nav flex-column mt-3">
+                    <li className="nav-item">
+                      <NavLink to="/todos" exact className="nav-link" activeClassName="active"><i className="fa fa-list mr-1"></i> Todos</NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink to="/user-card" className="nav-link" activeClassName="active"><i className="fa fa-user mr-1"></i>User Card</NavLink>
+                    </li>
+                  </ul>
+
                 </div>
-              </div>
 
-              <div className="row">
-                <div className="col-lg-8 offset-lg-2 mb-5 mt-3">
-                  <Route path="/" exact component={DemoTodos} />
+                <div className="col-sm-9">
+                  <Route path="/" exact component={Home} />
+                  <Route path="/todos" exact component={DemoTodos} />
                   <Route path="/user-card" exact component={DemoUserCard} />
                 </div>
               </div>
-
-              <div className="row">
-                <div className="col-12 mt-5">
-                  <p className="text-center">View the docs for this library at the <a href="https://github.com/gitsome/react-simple-context-state" target="_blank" rel="noopener noreferrer">react-simple-context-state</a> GitHub Repository.</p>
-                </div>
-              </div>
-
             </div>
           );
         }}

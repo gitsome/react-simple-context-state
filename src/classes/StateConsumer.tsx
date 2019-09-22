@@ -65,6 +65,10 @@ export default class StateConsumer extends React.Component {
     this.consumer = generateConsumerRecursive(StateStoreGlobal.getGlobalContextList());
   }
 
+  componentDidMount () {
+    console.log("mount:", this);
+  }
+
   public render () {
 
     return (

@@ -39,23 +39,25 @@ export default class App extends React.Component {
 
             <header className="app-header" onMouseEnter={() => { this.startAnimation(); }} onMouseLeave={() => { this.stopAnimation(); }}>
 
-              <h1>React Simple Context State <i className={`fa fa-thumbs-up ml-2 animated ${this.state.animate ? 'bounce' : ''}`}></i></h1>
+              <nav className="navbar navbar-expand-lg">
 
-              <div className="container">
-                <div className="row">
-                    <div className="col">
+                <a className="navbar-brand" href="#">
+                  React Simple Context State
+                </a>
 
-                      <ul class="nav nav-tabs justify-content-center mt-3">
-                        <li class="nav-item">
-                         <NavLink to="/" exact className="nav-link" activeClassName="active"><i className="fa fa-list mr-1"></i> Todos</NavLink>
-                        </li>
-                        <li class="nav-item">
-                          <NavLink to="/user-card" className="nav-link" activeClassName="active"><i className="fa fa-user mr-1"></i>User Card</NavLink>
-                        </li>
-                      </ul>
-                  </div>
+                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span className="navbar-toggler-icon"></span>
+                </button>
+
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul className="navbar-nav ml-auto">
+                    <li className="nav-item">
+                      <a href="https://github.com/gitsome/react-simple-context-state" target="_blank" rel="noopener noreferrer" className="nav-link"><i className="fa fa-github mr-1"></i> GitHub</a>
+                    </li>
+                  </ul>
                 </div>
-              </div>
+
+              </nav>
 
             </header>
 

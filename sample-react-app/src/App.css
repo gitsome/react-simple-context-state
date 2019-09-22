@@ -1,15 +1,20 @@
 .app {
   text-align: center;
 }
+
 .app-header {
   background-color: #282c34;
-  padding: 15px 0px 0px 0px;
+  padding: 0px;
   text-align: center;
   color: white;
 }
 
 .app-header .nav-tabs {
   border-bottom: 1px solid rgba(255, 255, 255, 0);
+}
+
+.reading-width {
+  max-width: 780px;
 }
 
 .badge-light {

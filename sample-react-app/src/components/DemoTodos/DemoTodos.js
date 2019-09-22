@@ -7,7 +7,7 @@ export default class DemoTodos extends React.Component {
 
   render () {
     return (
-      <div class="demo-container">
+      <div class="demo-container reading-width">
 
         <div className="row demo-dtails">
           <div className="col mb-3">

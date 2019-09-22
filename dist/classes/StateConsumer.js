@@ -43,6 +43,9 @@ class StateConsumer extends react_1.default.Component {
         super(props);
         this.consumer = generateConsumerRecursive(StateStoreGlobal_1.StateStoreGlobal.getGlobalContextList());
     }
+    componentDidMount() {
+        console.log("mount:", this);
+    }
     render() {
         return (react_1.default.createElement(this.consumer, null, this.props.children));
     }
