@@ -4,11 +4,18 @@ import { StateContext } from './dist/index';
 import { BrowserRouter as Router, NavLink } from "react-router-dom";
 
 import TodoStateStoreFactory from './StateStoreFactories/TodoStateStoreFactory';
-import UserStateStoreFactory from './StateStoreFactories/UserStateStoreFactory';
+import AppStateStoreFactory from './StateStoreFactories/AppStateStoreFactory';
 
+import SourceCodeViewer from './components/SourceCodeViewer/SourceCodeViewer';
 import ApplicationLayout from './components/ApplicationLayout/ApplicationLayout';
 
 import './App.css';
+
+const ANIMATE_CLASSES = ["bounce", "flash", "pulse", "rubberBand", "shake", "swing", "tada", "wobble", "jello", "heartBeat"];
+const getRandomAnimate = () => {
+  return ANIMATE_CLASSES[(Math.round(Math.random() * ANIMATE_CLASSES.length))];
+};
+
 export default class App extends React.Component {
 
   constructor (props) {
@@ -19,8 +26,8 @@ export default class App extends React.Component {
     };
 
     this.stateStores = {
-      userState: UserStateStoreFactory(),
-      todoState: TodoStateStoreFactory()
+      todoState: TodoStateStoreFactory(),
+      appState: AppStateStoreFactory()
     };
   }
 
@@ -35,33 +42,32 @@ export default class App extends React.Component {
     return (
       <Router>
         <StateContext.Provider stateStores={this.stateStores}>
+
           <div className="app">
 
-            <header className="app-header" onMouseEnter={() => { this.startAnimation(); }} onMouseLeave={() => { this.stopAnimation(); }}>
+            <header className="app-header container-fluid fixed-top" onMouseEnter={() => { this.startAnimation(); }} onMouseLeave={() => { this.stopAnimation(); }}>
 
-              <nav className="navbar navbar-expand-lg">
+              <div className="row">
+                <div className="col-lg-10 offset-lg-1">
 
-                <a className="navbar-brand" href="#">
-                  React Simple Context State
-                </a>
+                  <nav className="navbar navbar-dark navbar-expand-lg">
+                    <a className={`navbar-brand animated ${this.state.animate ? getRandomAnimate() : ''}`} href="#">React Simple Context State</a>
 
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  <span className="navbar-toggler-icon"></span>
-                </button>
+                    <ul className="navbar-nav ml-auto">
+                      <li className="nav-item">
+                        <a href="https://github.com/gitsome/react-simple-context-state" target="_blank" rel="noopener noreferrer" className="nav-link"><i className="fa fa-github mr-1"></i> GitHub</a>
+                      </li>
+                    </ul>
+                  </nav>
 
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul className="navbar-nav ml-auto">
-                    <li className="nav-item">
-                      <a href="https://github.com/gitsome/react-simple-context-state" target="_blank" rel="noopener noreferrer" className="nav-link"><i className="fa fa-github mr-1"></i> GitHub</a>
-                    </li>
-                  </ul>
                 </div>
-
-              </nav>
+              </div>
 
             </header>
 
             <ApplicationLayout/>
+
+            <SourceCodeViewer/>
 
           </div>
         </StateContext.Provider>

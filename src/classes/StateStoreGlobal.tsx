@@ -53,6 +53,21 @@ class StateStoreGlobal {
   }
 
   public static removeContextForStateStores (stateStoreMap: IStateStoreMap): boolean {
+
+    // lookup the context object by any of the stateStore keys used
+    const context = this.contextByStateStoreKeyMap[Object.keys(stateStoreMap)[0]];
+
+    Object.keys(stateStoreMap).forEach((stateStoreKey) => {
+      delete this.contextByStateStoreKeyMap[stateStoreKey];
+      delete this.globalStateStoreMap[stateStoreKey];
+    });
+
+    const contextIndex = this.globalContextList.indexOf(context);
+
+    if (contextIndex > -1) {
+      this.globalContextList.splice(contextIndex, 1);
+    }
+
     return true;
   }
 }

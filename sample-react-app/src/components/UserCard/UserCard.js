@@ -6,6 +6,7 @@ import './UserCard.css';
 export default class UserCard extends React.Component {
 
   constructor (props) {
+
     super(props);
     this.state = {
       currentTab: 'info'
@@ -21,18 +22,19 @@ export default class UserCard extends React.Component {
   }
 
   render () {
+
     return (
       <div className="user-card card">
         <div className="card-header">
           <ul className="nav nav-tabs card-header-tabs">
             <li className="nav-item">
-              <a className={`nav-link ${this.state.currentTab === 'info' ? 'active': ''}`} href="#" onClick={(e) => { e.preventDefault(); this.setCurrentTab('info'); }}>User Info</a>
+              <a className={`nav-link ${this.state.currentTab === 'info' ? 'active': ''}`} href="#" onClick={(e) => { e.preventDefault(); this.setCurrentTab('info'); }}>Info</a>
             </li>
             <li className="nav-item">
-              <a className={`nav-link ${this.state.currentTab === 'tweets' ? 'active': ''}`} href="#" onClick={(e) => { e.preventDefault(); this.setCurrentTab('tweets'); }}>User Tweets</a>
+              <a className={`nav-link ${this.state.currentTab === 'tweets' ? 'active': ''}`} href="#" onClick={(e) => { e.preventDefault(); this.setCurrentTab('tweets'); }}>Tweets</a>
             </li>
             <li className="nav-item">
-              <a className={`nav-link ${this.state.currentTab === 'todos' ? 'active': ''}`} href="#" onClick={(e) => { e.preventDefault(); this.setCurrentTab('todos'); }}>User Todos</a>
+              <a className={`nav-link ${this.state.currentTab === 'todos' ? 'active': ''}`} href="#" onClick={(e) => { e.preventDefault(); this.setCurrentTab('todos'); }}>Todos</a>
             </li>
           </ul>
         </div>

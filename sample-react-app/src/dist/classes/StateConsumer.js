@@ -5,20 +5,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const react_1 = __importDefault(require("react"));
 const StateStoreGlobal_1 = require("./StateStoreGlobal");
-const generateConsumerRecursive = (contextList, currentConsumer, accumulatedState) => {
+// recursively create a Consumer component that will expose each registered stateStore and combine them into one consumable
+const generateConsumerRecursive = (contextList, CurrentConsumer, accumulatedState) => {
     if (!accumulatedState) {
         accumulatedState = {};
     }
     if (contextList.length === 0) {
-        if (!currentConsumer) {
+        if (!CurrentConsumer) {
             throw new Error('StateConsumer.generateConsumerRecursive.consumerUsedWithoutContext');
         }
-        return currentConsumer;
+        return CurrentConsumer;
     }
-    const nextContext = contextList.pop();
-    if (!currentConsumer) {
-        currentConsumer = (props) => {
-            return (react_1.default.createElement(nextContext.context.Consumer, null, (consumerState) => {
+    const NextContext = contextList.pop();
+    let NextConsumer;
+    if (!CurrentConsumer) {
+        NextConsumer = (props) => {
+            return (react_1.default.createElement(NextContext.context.Consumer, null, (consumerState) => {
+                // order here actually matters to override the old with the new
                 accumulatedState = Object.assign(Object.assign({}, accumulatedState), consumerState);
                 const executableChildren = props.children;
                 return executableChildren(accumulatedState);
@@ -26,25 +29,23 @@ const generateConsumerRecursive = (contextList, currentConsumer, accumulatedStat
         };
     }
     else {
-        currentConsumer = (props) => {
-            console.log("NESTING==================>");
-            return (react_1.default.createElement("currentConsumer", null,
-                react_1.default.createElement(nextContext.context.Consumer, null, (consumerState) => {
-                    accumulatedState = Object.assign(Object.assign({}, accumulatedState), consumerState);
+        NextConsumer = (props) => {
+            return (react_1.default.createElement(CurrentConsumer, null, (currentConsumerState) => {
+                return (react_1.default.createElement(NextContext.context.Consumer, null, (nextConsumerState) => {
+                    // order here actually matters to override the old with the new
+                    accumulatedState = Object.assign(Object.assign(Object.assign({}, accumulatedState), currentConsumerState), nextConsumerState);
                     const executableChildren = props.children;
                     return executableChildren(accumulatedState);
-                })));
+                }));
+            }));
         };
     }
-    return generateConsumerRecursive(contextList, currentConsumer, accumulatedState);
+    return generateConsumerRecursive(contextList, NextConsumer, accumulatedState);
 };
 class StateConsumer extends react_1.default.Component {
     constructor(props) {
         super(props);
         this.consumer = generateConsumerRecursive(StateStoreGlobal_1.StateStoreGlobal.getGlobalContextList());
-    }
-    componentDidMount() {
-        console.log("mount:", this);
     }
     render() {
         return (react_1.default.createElement(this.consumer, null, this.props.children));
