@@ -1,6 +1,11 @@
 .application-layout {
-    padding: 45px;
+    padding: 125px 45px 200px 45px;
     text-align: left;
+}
+
+.application-layout .nav-item i {
+    width: 36px;
+    text-align: center;
 }
 
 .demo-item {

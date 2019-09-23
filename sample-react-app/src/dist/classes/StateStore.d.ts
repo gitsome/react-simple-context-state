@@ -1,6 +1,10 @@
 /// <reference types="node" />
 import EventEmitter from 'events';
-export default class StateStore extends EventEmitter {
+interface IStateStoreMap {
+    [key: string]: StateStore;
+}
+declare const StateStoreReservedKeys: string[];
+declare class StateStore extends EventEmitter {
     private reactivePropertiesList;
     private reactiveRequestPropertiesList;
     private cachedStateSnapshot;
@@ -19,3 +23,5 @@ export default class StateStore extends EventEmitter {
     linkToComponentState(statePropertyValue: any, componentReference: any): void;
     unlinkToComponentState(componentReference: any): void;
 }
+export default StateStore;
+export { StateStore, StateStoreReservedKeys, IStateStoreMap };

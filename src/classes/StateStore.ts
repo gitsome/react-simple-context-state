@@ -1,6 +1,12 @@
 import EventEmitter from 'events';
 
-export default class StateStore extends EventEmitter {
+interface IStateStoreMap {
+  [key: string]: StateStore;
+}
+
+const StateStoreReservedKeys = ['asyncState'];
+
+class StateStore extends EventEmitter {
 
   private reactivePropertiesList: string[];
   private reactiveRequestPropertiesList: string[];
@@ -170,3 +176,7 @@ export default class StateStore extends EventEmitter {
     this.removeListener('update', componentReference.linkReactSimpleState);
   }
 }
+
+export default StateStore;
+
+export { StateStore, StateStoreReservedKeys, IStateStoreMap };

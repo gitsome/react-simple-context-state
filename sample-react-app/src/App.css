@@ -1,13 +1,40 @@
+body {
+  overflow-x: hidden;
+}
+
 .app {
   text-align: center;
 }
+
 .app-header {
-  background-color: #282c34;
-  box-shadow: 0px 3px 8px rgba(0,0,0,0.2);
-  padding: 39px 0px 39px 0px;
+  background-color: rgb(45, 45, 45);
+  padding: 0px;
   text-align: center;
-  font-size: calc(10px + 2vmin);
   color: white;
+  font-size: 30px;
+  box-shadow: 0px 2px 25px rgba(255, 255, 255, 0.75);
+}
+
+.app-header .navbar-brand {
+  font-size: 30px;
+}
+
+.app-header .navbar {
+  padding-left: 0px !important;
+}
+
+.reading-width {
+  max-width: 780px;
+}
+
+.reading-width pre.code-snippet {
+  margin-top: 30px !important;
+  margin-bottom: 45px !important;
+  border: 1px solid rgba(0,0,0, 0.1);
+  box-shadow: 0px 1px 6px rgba(0,0,0, 0.1);
+  border-radius: 8px;
+  padding: 15px 30px !important;
+  background-color: rgba(40, 44, 52, 1.0) !important;
 }
 
 .badge-light {
@@ -17,10 +44,21 @@
   box-shadow: none;
   border: 1px solid rgba(0,0,0, 0.1);
   background: white;
+  font-weight: bold;
 }
 a.badge-light {
   border: 1px dashed rgba(0, 123, 255, 0.75);
 }
 a.badge-light:hover {
   border: 1px solid rgba(0, 123, 255, 1.0);
+}
+
+h1, h2, h3, h4, h5, .navbar-brand {
+  font-family: 'Poppins', sans-serif !important;
+}
+
+@media (max-width: 768px) {
+  .app-header .navbar-brand, .app-header {
+    font-size: 22px;
+  }
 }

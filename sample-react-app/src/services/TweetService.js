@@ -1,19 +1,8 @@
-import axios from 'axios';
-
 class TwitterService {
   getTweetsForUser (twitterHandle) {
     return new Promise((resolve, reject) => {
 
       const hasFailed = (Math.round(Math.random()) === 0);
-
-      axios.get('https://raw.githubusercontent.com/gitsome/react-simple-context-state/master/sample-react-app/src/StateStores/UserStateStore.js', { responseType: 'text', transformResponse: undefined }).then(response => {
-        console.log( typeof response.data );
-        // output `object` , not `string`, why?
-        console.log( response.data );
-        // output Array(false, 5), not "[false,5]"
-      });
-
-
 
       setTimeout(() => {
           if (hasFailed) {

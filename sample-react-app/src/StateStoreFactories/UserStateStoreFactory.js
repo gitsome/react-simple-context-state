@@ -1,6 +1,6 @@
-import { StateStore } from '../dist/index';
+import { StateStoreFactory } from '../dist/index';
 
-const UserStateStore = new StateStore({
+const UserStateStoreFactory = StateStoreFactory({
   firstName: 'Robert',
   lastName: 'Loblaw',
   blurb: 'This is a sample blurb for the user.',
@@ -11,4 +11,4 @@ const UserStateStore = new StateStore({
   }
 });
 
-export default UserStateStore;
+export default UserStateStoreFactory;

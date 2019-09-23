@@ -1,0 +1,42 @@
+
+
+.source-code-viewer {
+    padding: 125px 45px 125px 45px;
+    opacity: 0;
+    transition: all 400ms;
+    display: block;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 80%;
+    max-width: 1000px;
+    transform: translate3d(0,0,0);
+    background: rgb(45, 45, 45);
+    overflow-y: auto;
+    box-shadow: -2px 0px 10px rgba(0,0,0,0.3);
+}
+
+.source-code-viewer-transition-enter {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+}
+.source-code-viewer-transition-enter-active {
+    opacity: 1;
+    transform: translate3d(0,0,0);
+}
+.source-code-viewer-transition-enter-done {
+    opacity: 1;
+    transform: translate3d(0,0,0);
+}
+.source-code-viewer-transition-exit {
+    opacity: 1;
+    transform: translate3d(0,0,0);
+}
+.source-code-viewer-transition-exit-active {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+}
+.source-code-viewer-transition-exit-done {
+    display: none;
+}
