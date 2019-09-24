@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SourceCodeLink, Property } from '../SourceCodeLink/SourceCodeLink';
+import { SourceCodeLink } from '../SourceCodeLink/SourceCodeLink';
 
 export default class Home extends React.Component {
 

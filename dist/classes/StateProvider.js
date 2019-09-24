@@ -1,16 +1,11 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
-const StateStoreGlobal_1 = require("./StateStoreGlobal");
-class StateProvider extends react_1.default.Component {
+import React from 'react';
+import { StateStoreGlobal } from './StateStoreGlobal';
+export default class StateProvider extends React.Component {
     constructor(props) {
         super(props);
         // we use component state to store the immutable state to avoid unecessary updates as discussed in React's Context documentation
         this.state = {};
-        this.stateStoreContext = StateStoreGlobal_1.StateStoreGlobal.getContextForStateStores(props.stateStores);
+        this.stateStoreContext = StateStoreGlobal.getContextForStateStores(props.stateStores);
         this.stateStoreMap = {};
         // here we bind state changes of these stateStores to the update cycle down this component branch
         // we also grab the first snapshot of state from the stateStore
@@ -19,8 +14,8 @@ class StateProvider extends react_1.default.Component {
             props.stateStores[stateKey].linkToComponentState(stateKey, this);
             // setup the first immutable state snapshot
             this.state[stateKey] = props.stateStores[stateKey].get();
-            // populate and object that will be used to expose state stores through context for convenience
-            this.stateStoreMap[`${stateKey}Store`] = props.stateStores[stateKey];
+            // add the state stores to state so they can come through context for convenience
+            this.state[`${stateKey}Store`] = props.stateStores[stateKey];
         });
     }
     componentWillUnmount() {
@@ -29,12 +24,11 @@ class StateProvider extends react_1.default.Component {
             this.props.stateStores[stateKey].unlinkToComponentState(this);
         });
         // and de-register the state stores from the global cache
-        StateStoreGlobal_1.StateStoreGlobal.removeContextForStateStores(this.props.stateStores);
+        StateStoreGlobal.removeContextForStateStores(this.props.stateStores);
     }
     render() {
-        return (react_1.default.createElement(this.stateStoreContext.Provider, { value: Object.assign(Object.assign({}, this.state), this.stateStoreMap) }, this.props.children));
+        return (React.createElement(this.stateStoreContext.Provider, { value: this.state }, this.props.children));
     }
 }
-exports.default = StateProvider;
 ;
 //# sourceMappingURL=StateProvider.js.map

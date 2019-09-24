@@ -1,20 +1,16 @@
 import React from 'react';
 import { StateContext } from './dist/index';
 
-import { BrowserRouter as Router, NavLink } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 
 import TodoStateStoreFactory from './StateStoreFactories/TodoStateStoreFactory';
 import AppStateStoreFactory from './StateStoreFactories/AppStateStoreFactory';
 
 import SourceCodeViewer from './components/SourceCodeViewer/SourceCodeViewer';
 import ApplicationLayout from './components/ApplicationLayout/ApplicationLayout';
+import BackgroundNavigation from './components/BackgroundNavigation/BackgroundNavigation';
 
 import './App.css';
-
-const ANIMATE_CLASSES = ["bounce", "flash", "pulse", "rubberBand", "shake", "swing", "tada", "wobble", "jello", "heartBeat"];
-const getRandomAnimate = () => {
-  return ANIMATE_CLASSES[(Math.round(Math.random() * ANIMATE_CLASSES.length))];
-};
 
 export default class App extends React.Component {
 
@@ -31,45 +27,48 @@ export default class App extends React.Component {
     };
   }
 
-  startAnimation () {
-    this.setState({animate: true});
+  toggleBackgroundMenu () {
+    this.stateStores.appState.backgroundMenuOpenUpdate(!this.stateStores.appState.backgroundMenuOpen);
   }
-  stopAnimation () {
-    this.setState({animate: false});
+
+  closeBackgroundMenu () {
+    this.stateStores.appState.backgroundMenuOpenUpdate(false);
   }
 
   render () {
     return (
-      <Router>
+      <Router basename={process.env.REACT_APP_ROUTER_BASENAME}>
         <StateContext.Provider stateStores={this.stateStores}>
+          <StateContext.Consumer>
+            {({ appState }) => {
 
-          <div className="app">
+              return (
+                <div className="app-wrapper">
+                  <header className="app-header container-fluid fixed-top">
 
-            <header className="app-header container-fluid fixed-top" onMouseEnter={() => { this.startAnimation(); }} onMouseLeave={() => { this.stopAnimation(); }}>
+                    <nav className="navbar navbar-dark navbar-expand-lg">
+                      <button className="btn btn-outline-primary mr-3 d-sm-block d-xs-block d-md-none" onClick={(e) => { e.preventDefault(); e.stopPropagation(); this.toggleBackgroundMenu(); }}><i className="fa fa-bars"></i></button>
+                      <a className="navbar-brand mr-auto" href="#">React Simple Context State</a>
 
-              <div className="row">
-                <div className="col-lg-10 offset-lg-1">
+                      <ul className="navbar-nav ml-auto d-none d-md-block">
+                        <li className="nav-item">
+                          <a href="https://github.com/gitsome/react-simple-context-state" target="_blank" rel="noopener noreferrer" className="nav-link"><i className="fa fa-github mr-1"></i> GitHub</a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </header>
 
-                  <nav className="navbar navbar-dark navbar-expand-lg">
-                    <a className={`navbar-brand animated ${this.state.animate ? getRandomAnimate() : ''}`} href="#">React Simple Context State</a>
+                  <div className={`app ${appState.backgroundMenuOpen ? 'app-show-background-navigation' : ''}`} onClick={(e) => { this.closeBackgroundMenu(); }}>
+                    <ApplicationLayout/>
+                    <div>BackgroundMenuOpen: {appState.backgroundMenuOpen}</div>
+                  </div>
 
-                    <ul className="navbar-nav ml-auto">
-                      <li className="nav-item">
-                        <a href="https://github.com/gitsome/react-simple-context-state" target="_blank" rel="noopener noreferrer" className="nav-link"><i className="fa fa-github mr-1"></i> GitHub</a>
-                      </li>
-                    </ul>
-                  </nav>
-
+                  <SourceCodeViewer/>
+                  <BackgroundNavigation/>
                 </div>
-              </div>
-
-            </header>
-
-            <ApplicationLayout/>
-
-            <SourceCodeViewer/>
-
-          </div>
+              )
+            }}
+          </StateContext.Consumer>
         </StateContext.Provider>
       </Router>
     );

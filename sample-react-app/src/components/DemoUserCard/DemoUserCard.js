@@ -1,7 +1,7 @@
 import React from 'react';
 
-import StateContext from '../../dist/classes/StateContext';
-import { SourceCodeLink, Property } from '../SourceCodeLink/SourceCodeLink';
+import { StateContext } from '../../dist';
+import { SourceCodeLink } from '../SourceCodeLink/SourceCodeLink';
 
 import UserStateStoreFactory from '../../StateStoreFactories/UserStateStoreFactory';
 

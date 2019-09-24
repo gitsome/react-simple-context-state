@@ -6,7 +6,7 @@ import GettingStarted from '../GettingStarted/GettingStarted';
 import DemoUserCard from '../DemoUserCard/DemoUserCard';
 import DemoTodos from '../DemoTodos/DemoTodos';
 
-import StateContext from '../../dist/classes/StateContext';
+import { StateContext } from '../../dist';
 
 import './ApplicationLayout.css';
 export default class ApplicationLayout extends React.Component {
@@ -22,7 +22,7 @@ export default class ApplicationLayout extends React.Component {
 
               <div className="row">
 
-                <div className="col-md-3 col-lg-2 offset-lg-1">
+                <div className="col-md-3 col-lg-2 offset-lg-1 d-xs-none d-sm-none d-md-block">
 
                   <h4 className="mt-lg-3">About</h4>
                   <div className="dropdown-divider"></div>

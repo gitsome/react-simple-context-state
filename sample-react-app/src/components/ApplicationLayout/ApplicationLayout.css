@@ -19,3 +19,9 @@
     margin-top: 20px;
     border-top: 1px dotted rgba(0,0,0,0.3);
 }
+
+@media (max-width: 768px) {
+    .demo-item {
+        padding: 10px;
+    }
+}

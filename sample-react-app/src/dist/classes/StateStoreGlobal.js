@@ -1,14 +1,9 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const react_1 = __importDefault(require("react"));
+import React from 'react';
 class StateStoreGlobal {
     static getContextForStateStores(stateStoreMap) {
         const stateStoreContext = {
             stateStoreMap,
-            context: react_1.default.createContext({}),
+            context: React.createContext({}),
         };
         // create some stateStoreKey lookup maps
         Object.keys(stateStoreContext.stateStoreMap).forEach((stateStoreKey) => {
@@ -44,9 +39,9 @@ class StateStoreGlobal {
         return true;
     }
 }
-exports.StateStoreGlobal = StateStoreGlobal;
 StateStoreGlobal.contextByStateStoreKeyMap = {};
 StateStoreGlobal.globalStateStoreMap = {};
 StateStoreGlobal.globalContextList = [];
-exports.default = StateStoreGlobal;
+export default StateStoreGlobal;
+export { StateStoreGlobal };
 //# sourceMappingURL=StateStoreGlobal.js.map

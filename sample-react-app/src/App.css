@@ -4,6 +4,18 @@ body {
 
 .app {
   text-align: center;
+  position: relative;
+  z-index: 1;
+  background: white;
+  transition: all 400ms;
+  transform: translate3d(0,0,0);
+  min-height: 100vh;
+  box-shadow: -3px 0px 15px rgba(0,0,0, 0.5);
+}
+
+.app.app-show-background-navigation {
+  transition: all 400ms;
+  transform: translate3d(400px,0,0);
 }
 
 .app-header {
@@ -60,5 +72,10 @@ h1, h2, h3, h4, h5, .navbar-brand {
 @media (max-width: 768px) {
   .app-header .navbar-brand, .app-header {
     font-size: 22px;
+  }
+}
+@media (max-width: 600px) {
+  .app-header .navbar-brand, .app-header {
+    font-size: 18px;
   }
 }

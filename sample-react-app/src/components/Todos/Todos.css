@@ -7,7 +7,7 @@
     padding-top: 6px;
 }
 .todo-item-complete {
-    padding-top: 4px;
+    padding-top: 3px;
 }
 .todo-item-complete-button {
     font-size: 30px;
@@ -16,4 +16,20 @@
 }
 .todo-item-complete-button .fa-check-circle {
     color: green;
+}
+
+.todo-item-complete-wrapper {
+    padding-left: 35px;
+    position: relative;
+}
+.todo-item-complete-wrapper .todo-item-complete {
+    position: absolute;
+    left: 0; top: 0;
+}
+
+@media (max-width: 768px) {
+    .todo-item {
+        padding: 10px;
+        font-size: 14px;
+    }
 }
