@@ -26,7 +26,6 @@ const generateConsumerRecursive = (contextList: IStateStoreContext[], CurrentCon
       return (
         <NextContext.context.Consumer>
           {(consumerState) => {
-            // order here actually matters to override the old with the new
             accumulatedState = {...accumulatedState, ...consumerState};
             const executableChildren = props.children as (someAccumulatedState: object) => any;
             return executableChildren(accumulatedState);
@@ -46,7 +45,6 @@ const generateConsumerRecursive = (contextList: IStateStoreContext[], CurrentCon
             return (
               <NextContext.context.Consumer>
                 {(nextConsumerState) => {
-                  // order here actually matters to override the old with the new
                   accumulatedState = {...accumulatedState, ...currentConsumerState, ...nextConsumerState};
                   const executableChildren = props.children as (someAccumulatedState: object) => any;
                   return executableChildren(accumulatedState);

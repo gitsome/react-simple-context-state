@@ -7,7 +7,7 @@ class SourceCodeService {
 
   getSourceCode (sourceCodeFile) {
 
-    const rawSourceFile = sourceCodeFile.replace(/^https\:\/\/github\.com/,'https://raw.githubusercontent.com').replace(/blob\//g, '');
+    const rawSourceFile = sourceCodeFile.replace(/^https:\/\/github\.com/,'https://raw.githubusercontent.com').replace(/blob\//g, '');
 
     return axios.get(rawSourceFile, { responseType: 'text', transformResponse: undefined }).then(response => {
       return response.data;

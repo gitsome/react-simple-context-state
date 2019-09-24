@@ -1,12 +1,6 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const events_1 = __importDefault(require("events"));
+import EventEmitter from 'events';
 const StateStoreReservedKeys = ['asyncState'];
-exports.StateStoreReservedKeys = StateStoreReservedKeys;
-class StateStore extends events_1.default {
+class StateStore extends EventEmitter {
     constructor(reactiveProperties) {
         super();
         this.reactivePropertiesList = [];
@@ -57,11 +51,11 @@ class StateStore extends events_1.default {
                     this.emit('update', this[`${propName}Error`]);
                     this.emit(`${propName}ErrorUpdated`, this[`${propName}Error`]);
                 });
-                // asyncState error property and default to false
+                // asyncState loading property and default to false
                 this[`${propName}Loading`] = false;
                 this.reactivePropertiesList.push(`${propName}Loading`);
                 this.reactiveRequestPropertiesList.push(`${propName}Loading`);
-                // asyncState error property update method
+                // asyncState loading property update method
                 this[`${propName}LoadingUpdate`] = wrapUpdate((newValue) => {
                     this[`${propName}Loading`] = newValue;
                     this.emit('update', this[`${propName}Loading`]);
@@ -125,6 +119,7 @@ class StateStore extends events_1.default {
         componentReference.state = componentReference.state || {};
         componentReference.state[statePropertyValue] = this.get();
         componentReference.linkReactSimpleState = () => {
+            const nextValue = this.get();
             componentReference.setState({
                 [statePropertyValue]: this.get()
             });
@@ -136,6 +131,6 @@ class StateStore extends events_1.default {
         this.removeListener('update', componentReference.linkReactSimpleState);
     }
 }
-exports.StateStore = StateStore;
-exports.default = StateStore;
+export default StateStore;
+export { StateStore, StateStoreReservedKeys };
 //# sourceMappingURL=StateStore.js.map

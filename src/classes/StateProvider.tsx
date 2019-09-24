@@ -29,8 +29,8 @@ export default class StateProvider extends React.Component {
       // setup the first immutable state snapshot
       this.state[stateKey] = props.stateStores[stateKey].get();
 
-      // populate and object that will be used to expose state stores through context for convenience
-      this.stateStoreMap[`${stateKey}Store`] = props.stateStores[stateKey];
+      // add the state stores to state so they can come through context for convenience
+      this.state[`${stateKey}Store`] = props.stateStores[stateKey];
     });
   }
 
@@ -47,7 +47,7 @@ export default class StateProvider extends React.Component {
 
   public render () {
     return (
-      <this.stateStoreContext.Provider value={{...this.state, ...this.stateStoreMap}}>
+      <this.stateStoreContext.Provider value={this.state}>
         {this.props.children}
       </this.stateStoreContext.Provider>
     );

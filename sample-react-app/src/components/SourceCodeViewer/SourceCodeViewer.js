@@ -4,10 +4,11 @@ import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 import { CSSTransition } from 'react-transition-group';
-import StateContext from '../../dist/classes/StateContext';
+import { StateContext } from '../../dist';
+
+import SourceCodeService from '../../services/SourceCodeService';
 
 import './SourceCodeViewer.css';
-import SourceCodeService from '../../services/SourceCodeService';
 
 const animatingTimeouts = {
   appear: 400,
@@ -34,7 +35,7 @@ export default class SourceCodeViewer extends React.Component {
                 <div className="row text-left mb-2">
                     <div className="col">
                       <button className="btn btn-outline-primary" onClick={() => { this.closeSourceCode(); }}><i className="fa fa-times-circle"></i> Close</button>
-                      <a href={appState.currentSourceFile} target="_blank" className="btn btn-outline-secondary ml-2"><i className="fa fa-github"></i> View in GitHub</a>
+                      <a href={appState.currentSourceFile ? appState.currentSourceFile : ''} target="_blank" rel="noopener noreferrer" className="btn btn-outline-secondary ml-2"><i className="fa fa-github"></i> View in GitHub</a>
                     </div>
                 </div>
 

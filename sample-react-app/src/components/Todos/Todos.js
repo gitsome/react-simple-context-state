@@ -73,22 +73,22 @@ export default class ApplicationLayout extends React.Component {
                       return (
                         <div className="todo-item container-fluid mb-3" key={todo.title}>
                           <div className="row">
-                            <div className="col col-1">
-                              <div className="todo-item-complete">
-                                <span className="todo-item-complete-button" onClick={() => { this.toggleTodoComplete(todo); }}>
-                                  { !todo.complete && (
-                                    <i className="fa fa-circle-o"></i>
-                                  )}
-                                  { todo.complete && (
-                                    <i className="fa fa-check-circle"></i>
-                                  )}
-                                </span>
+                            <div className="col-md-8 col-sm-6">
+                              <div className="todo-item-complete-wrapper">
+                                <div className="todo-item-complete">
+                                  <span className="todo-item-complete-button" onClick={() => { this.toggleTodoComplete(todo); }}>
+                                    { !todo.complete && (
+                                      <i className="fa fa-circle-o"></i>
+                                    )}
+                                    { todo.complete && (
+                                      <i className="fa fa-check-circle"></i>
+                                    )}
+                                  </span>
+                                </div>
+                                <h5 className="todo-item-title">{todo.title}</h5>
                               </div>
                             </div>
-                            <div className="col col-8">
-                              <h5 className="todo-item-title">{todo.title}</h5>
-                            </div>
-                            <div className="col col-3">
+                            <div className="col-md-4 col-sm-6">
                               <button className="btn btn-outline-secondary btn-block" onClick={() => { this.deleteTodo(todo); }}>Delete</button>
                             </div>
                           </div>
